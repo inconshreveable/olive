@@ -175,7 +175,7 @@ func mapRoutes(rt martini.Routes) martini.Handler {
 type OliveMartini struct {
 	*martini.Martini
 	*Olive
-	martini.Router
+	Router martini.Router
 }
 
 // Returns an *OliveMartini that has both an Olive router and *martini.Martini
