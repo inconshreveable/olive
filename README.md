@@ -1,4 +1,4 @@
-# olive - REST APIs with Martini
+# olive - REST APIs with Martini [![godoc reference](https://godoc.org/gopkg.in/inconshreveable/olive.v0?status.png)](https://godoc.org/gopkg.in/inconshreveable/olive.v0)
 
 olive is tiny, opinonated scaffolding to rapidly build standards-compliant REST APIs on top of Martini.
 olive handles content negotiation, parameter deserialization, request-scoped logging, panic recovery,
@@ -6,6 +6,8 @@ and RFC-appropriate error responses so that you can focus on writing your busine
 
 Because it's just Martini, you can easily plug in any middleware from the martini community for
 additional functionality like setting CORS headers.
+
+olive is currently experimental.
 
 Here's a simple API which calculates factorials that handles input and output in JSON or XML.
 
@@ -42,7 +44,7 @@ func factorial(r olive.Response, in *Input) {
 }
 ```
 
-### `olive.Response`
+### olive.Response
 All olive endpoint handlers are injected with an `olive.Response` object with
 methods that makes it easy to respond to the caller.
 
@@ -78,7 +80,7 @@ func handler(r olive.Response) {
 }
 ```
 
-### Input injection
+### Param injection
 When you create an olive endpoint, you can specify a Param that it expects. If you do,
 olive will attempt to deserialize the request body by examing the Content-Type 
 and then map it into the structure you passed as the Param. It then takes the mapped structure
