@@ -17,7 +17,7 @@ Simple example:
 	func main() {
 		o := olive.Martini()
 		o.Debug = true
-		o.Post("/adder", o.Endpoint(adder).Param(Input{}))
+		o.Post("/fact", o.Endpoint(factorial).Param(Input{}))
 		http.ListenAndServe(":8080", o)
 	}
 
@@ -30,7 +30,7 @@ Simple example:
 		Factorial int `json:"answer" xml:"Answer"`
 	}
 
-	func adder(r olive.Response, in *Input) {
+	func factorial(r olive.Response, in *Input) {
 		r.Info("computing factorial", "num", in.Num, "timeout", in.Timeout)
 		ans, err := computeFactorial(in.Num, time.Duration(in.Timeout) * time.Second)
 		if err != nil {
@@ -45,9 +45,9 @@ on the client's Accept header, the result will be serialized in either
 XML or JSON. Appropriate failures are returned for invalid client requests.
 The logger assigns a unique id to each request for easy tracing purposes:
 
-	INFO[11-21|15:33:58] start                                    pg=/adder id=e416b6cc83f386bc
-	INFO[11-21|15:33:58] computing factorial                      pg=/adder id=e416b6cc83f386bc num=4 timeout=5
-	INFO[11-21|15:33:58] end                                      pg=/adder id=e416b6cc83f386bc status=200 dur=371.98us
+	INFO[11-21|15:33:58] start                                    pg=/fact id=e416b6cc83f386bc
+	INFO[11-21|15:33:58] computing factorial                      pg=/fact id=e416b6cc83f386bc num=4 timeout=5
+	INFO[11-21|15:33:58] end                                      pg=/fact id=e416b6cc83f386bc status=200 dur=371.98us
 
 A more advanced example explaining features in detail:
 
