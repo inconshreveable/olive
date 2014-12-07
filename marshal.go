@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/go-martini/martini"
-	"github.com/zenazn/goji/param"
+	"github.com/goji/param"
 	log "gopkg.in/inconshreveable/log15.v2"
 )
 
