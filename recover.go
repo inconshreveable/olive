@@ -42,7 +42,7 @@ func defaultRecoveryMiddleware(debugMode bool) martini.Handler {
 		debugStack := make([]string, 0)
 		for _, frame := range s {
 			fr := fmt.Sprintf("%+v", frame)
-			l.Debug(fr, "panic", p)
+			l.Debug(fr, "panic", p.Cause)
 			debugStack = append(debugStack, fr)
 		}
 		if debugMode {
