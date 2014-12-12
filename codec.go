@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/zenazn/goji/param"
+	"github.com/goji/param"
 	log "gopkg.in/inconshreveable/log15.v2"
 )
 
