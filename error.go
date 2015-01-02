@@ -71,7 +71,7 @@ func (e *errEncoder) abort(err error) {
 	logFn := e.l.Warn
 	if apiErr.StatusCode == http.StatusInternalServerError {
 		logFn = e.l.Error
-		if ok && !e.debug {
+		if !ok && !e.debug {
 			apiErr.Details = nil
 		}
 	}
@@ -92,6 +92,6 @@ func (e *errEncoder) Abort(err error) {
 func internalServerError(err error) *Error {
 	return &Error{
 		StatusCode: http.StatusInternalServerError,
-		Details:    M{"err": err},
+		Details:    M{"err": err.Error()},
 	}
 }
