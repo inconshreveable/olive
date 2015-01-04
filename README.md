@@ -55,7 +55,7 @@ and XML, but it can be extended to handle arbitrary content types.
 
 ```go
 func helloWorldEndpoint(r olive.Response) {
-    r.Encode([]{"hello", "world"})
+    r.Encode([]string{"hello", "world"})
 }
 ```
 
