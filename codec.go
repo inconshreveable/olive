@@ -56,14 +56,6 @@ var (
 	jsonEncoder = encoderFunc(func(wr io.Writer, v interface{}) error {
 		return json.NewEncoder(wr).Encode(v)
 	})
-	prettyJSONEncoder = encoderFunc(func(wr io.Writer, v interface{}) error {
-		buf, err := json.MarshalIndent(v, "", "    ")
-		if err != nil {
-			return err
-		}
-		_, err = wr.Write(buf)
-		return err
-	})
 	xmlEncoder = encoderFunc(func(wr io.Writer, v interface{}) error {
 		return xml.NewEncoder(wr).Encode(v)
 	})

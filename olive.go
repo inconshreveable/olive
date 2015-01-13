@@ -71,7 +71,6 @@ func New(rt martini.Router) *Olive {
 	o := &Olive{
 		rt: rt,
 		Encoders: []ContentEncoder{
-			{"text/html", prettyJSONEncoder},
 			{"application/json", jsonEncoder},
 			{"text/xml", xmlEncoder},
 			{"application/xml", xmlEncoder},
