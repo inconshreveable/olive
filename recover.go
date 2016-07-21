@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/go-martini/martini"
-	log "gopkg.in/inconshreveable/log15.v2"
-	"gopkg.in/stack.v1"
+	log "github.com/inconshreveable/log15"
+	stack "gopkg.in/stack.v1"
 )
 
 // A recoveredPanic is injected into the martini context by the RecoveryMiddleware when

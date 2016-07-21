@@ -8,7 +8,7 @@ import (
 
 	"github.com/go-martini/martini"
 	"github.com/goji/param"
-	log "gopkg.in/inconshreveable/log15.v2"
+	log "github.com/inconshreveable/log15"
 )
 
 func unmarshalMiddleware(decoders map[string]Decoder, inputParam interface{}) martini.Handler {

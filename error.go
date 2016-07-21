@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/go-martini/martini"
-	log "gopkg.in/inconshreveable/log15.v2"
+	log "github.com/inconshreveable/log15"
 )
 
 // A structure with details about an error that occurred while handling a request.
