@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/go-martini/martini"
-	log "gopkg.in/inconshreveable/log15.v2"
+	log "github.com/inconshreveable/log15"
 )
 
 // Response is a composition of the most common interfaces needed when handling a request.

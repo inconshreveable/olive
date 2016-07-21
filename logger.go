@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/go-martini/martini"
-	log "gopkg.in/inconshreveable/log15.v2"
-	logext "gopkg.in/inconshreveable/log15.v2/ext"
+	log "github.com/inconshreveable/log15"
+	logext "github.com/inconshreveable/log15/ext"
 )
 
 func loggerMiddleware(c martini.Context, req *http.Request, w http.ResponseWriter) {
