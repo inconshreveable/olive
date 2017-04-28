@@ -37,22 +37,25 @@ func recoveryMiddleware(onPanic martini.Handler) martini.Handler {
 // panic cause and stack trace are written to the response and logged.
 func defaultRecoveryMiddleware(debugMode bool) martini.Handler {
 	return recoveryMiddleware(func(p *recoveredPanic, w http.ResponseWriter, l log.Logger) {
-		s := stack.Trace().TrimRuntime()
-		l.Crit("handler crashed", "panic", p.Cause, "stack", fmt.Sprintf("%+v", s))
-		debugStack := make([]string, 0)
-		for _, frame := range s {
-			fr := fmt.Sprintf("%+v", frame)
-			l.Debug(fr, "panic", p.Cause)
-			debugStack = append(debugStack, fr)
-		}
-		if debugMode {
-			http.Error(w, fmt.Sprintf("panic: %v\n\n", p.Cause)+strings.Join(debugStack, "\n"), 500)
-		} else {
-			enc := json.NewEncoder(w)
-			enc.Encode(&Error{
-				StatusCode: http.StatusInternalServerError,
-				Message:    http.StatusText(http.StatusInternalServerError),
-			})
+		t := stack.Trace()
+		if t != nil {
+			s := t.TrimRuntime()
+			l.Crit("handler crashed", "panic", p.Cause, "stack", fmt.Sprintf("%+v", s))
+			debugStack := make([]string, 0)
+			for _, frame := range s {
+				fr := fmt.Sprintf("%+v", frame)
+				l.Debug(fr, "panic", p.Cause)
+				debugStack = append(debugStack, fr)
+			}
+			if debugMode {
+				http.Error(w, fmt.Sprintf("panic: %v\n\n", p.Cause)+strings.Join(debugStack, "\n"), 500)
+			} else {
+				enc := json.NewEncoder(w)
+				enc.Encode(&Error{
+					StatusCode: http.StatusInternalServerError,
+					Message:    http.StatusText(http.StatusInternalServerError),
+				})
+			}
 		}
 	})
 }
