@@ -54,7 +54,7 @@ func decodeFailure(err error) *Error {
 	return &Error{
 		StatusCode: http.StatusBadRequest,
 		Message:    "failed to deserialize request parameter",
-		Details:    M{"err": err},
+		Details:    M{"err": err.Error()},
 	}
 }
 

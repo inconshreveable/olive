@@ -75,7 +75,7 @@ func safeEncoder(e Encoder, l log.Logger) Encoder {
 		e.Encode(wr, &Error{
 			StatusCode: http.StatusInternalServerError,
 			Message:    "failed to encode response",
-			Details:    M{"err": err},
+			Details:    M{"err": err.Error()},
 		})
 		return err
 	})
